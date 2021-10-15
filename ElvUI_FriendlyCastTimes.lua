@@ -1,6 +1,36 @@
+local ADDON_NAME = ...;
 local E, _, V, P, G = unpack(ElvUI) --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB, Localize Underscore
 local UF = E:GetModule('UnitFrames')
 local NP = E:GetModule('NamePlates')
+local FCT = E:NewModule("FriendlyCastTimes")
+local EP = LibStub("LibElvUIPlugin-1.0")
+
+E:RegisterModule(FCT:GetName())
+
+local function InjectOptions()
+  if not E.Options.args.FCT then
+    E.Options.args.FCT = {
+      type = "group",
+      name = "Friendly Cast Times",
+      args = {
+        L1 = { type = "description", fontSize = "medium", order = 1, name = "A simple plugin for ElvUI that converts long cast times (more than 60 seconds) into more human readable formats (mm:ss, or hh:mm if longer than 1 hour).\n\nNo configuration is required.  Install alongside ElvUI and you're good to go!" },
+        L2 = { type = "header", name = "Credits", order = 2 },
+        L3 = { type = "description", order = 3, fontSize = "medium", name = "Written by clocklear (github.com/clocklear)" },
+        L4 = { type = "description", order = 4, fontSize = "small",name = "",width = "full" },
+        L5 = {order = 5, type = "header", name = "Feedback"},
+        L6 = { type = "description", order = 6, fontSize = "medium", name = "Need help?  Have a feature request?  Open an issue on the code repository for ElvUI_FriendlyCastTimes or send me a PM on Reddit." },
+        L7 = { type = "description", order = 7, fontSize = "medium", name = "", width = "full", },
+        L8 = { type = "description", order = 8, fontSize = "medium", name = "Issue Tracker:", width = "half", },
+        L9 = { type = "description", order = 9, fontSize = "medium", name = "github.com/clocklear/ElvUI_FriendlyCastTimes/issues", width = "double", },
+        L10 = { type = "description", order = 10, fontSize = "small", name = "", width = "full", },
+        L11 = { type = "description", order = 11, fontSize = "medium", name = "Reddit:", width = "half", },
+        L12 = { type = "description", order = 12, fontSize = "medium", name = "neoeraser (reddit.com/u/neoeraser)", width = "double", },
+      }
+    }
+  end
+end
+
+EP:RegisterPlugin(ADDON_NAME, InjectOptions)
 
 -- Helper func for converting raw time (seconds) into mm:ss when > 1 min and < 1 hour, and hh:mm when > 1 hour
 local function TimeFormat(num)
