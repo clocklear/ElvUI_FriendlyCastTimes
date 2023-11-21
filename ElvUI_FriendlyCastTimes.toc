@@ -1,7 +1,7 @@
-## Interface: 100105
+## Interface: 100200
 ## Author: clocklear
 ## Title: |cff1784d1ElvUI|r Friendly Cast Times
-## Version: v10.1.5-1
+## Version: v10.2.0-1
 ## Notes: Converts cast times greater than 60 seconds into more human-friendly representation (mm:ss or hh:mm, depending on duration)
 ## RequiredDeps: ElvUI
 ## X-Curse-Project-ID: 534316
